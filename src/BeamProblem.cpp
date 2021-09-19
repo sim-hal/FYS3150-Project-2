@@ -32,15 +32,6 @@ void BeamProblem::fill_analytical() {
 }
 
 void BeamProblem::compute_with_armadillo() {
-    arma::eig_sym(computed_eigenvals, computed_eigenvecs, A);
+    arma::eig_sym(arma_eigenvals, arma_eigenvecs, A);
 }
 
-bool BeamProblem::eigenvecs_agree(){
-    for (int i = 0; i < N; i++){
-        arma::vec v = computed_eigenvecs.col(i);
-        arma::vec u = analytical_eigenvecs.col(i);
-        if (arma::any(arma::abs(v - u) > TOL) && arma::any(arma::abs(v + u) > TOL))
-            return false;
-    }
-    return true;
-}
