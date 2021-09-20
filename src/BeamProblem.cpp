@@ -2,6 +2,7 @@
 #include <armadillo>
 #include <math.h>
 #include "BeamProblem.hpp"
+#include "JacobiAlgorithm.hpp"
 
 BeamProblem::BeamProblem(int n) {
                 /*
@@ -33,5 +34,10 @@ void BeamProblem::fill_analytical() {
 
 void BeamProblem::compute_with_armadillo() {
     arma::eig_sym(arma_eigenvals, arma_eigenvecs, A);
+}
+
+void BeamProblem::compute_with_jacobi() {
+    bool converged;
+    J::jacobi_eigensolver(A, 1e-8, jacobi_eigenvals, jacobi_eigenvecs, 100, converged, N);
 }
 

@@ -27,7 +27,14 @@ void small_example() {
     BeamProblem small_problem(n);
     small_problem.fill_analytical();
     small_problem.compute_with_armadillo();
+    small_problem.compute_with_jacobi();
     cout << eigenvecs_agree(small_problem.arma_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) << endl;
+    cout << eigenvecs_agree(small_problem.jacobi_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) << endl;
+    cout << eigenvals_agree(small_problem.arma_eigenvals, small_problem.analytical_eigenvals) << endl;
+    cout << eigenvals_agree(small_problem.jacobi_eigenvals, small_problem.analytical_eigenvals) << endl;
+    small_problem.jacobi_eigenvecs.print();
+    cout << "------------" << endl;
+    small_problem.analytical_eigenvecs.print();
 }
 
 bool test_max_offdiag_symmetric(){
