@@ -56,7 +56,7 @@ bool test_max_offdiag_symmetric(){
 
 int main() {
     small_example();
-    cout << test_max_offdiag_symmetric() <<endl;
+    cout << test_max_offdiag_symmetric() << endl;
     return 0;
 }
 

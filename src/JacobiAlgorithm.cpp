@@ -1,6 +1,7 @@
 #include <iostream>
 #include <armadillo>
 #include <math.h>
+#include <utility>
 #include "JacobiAlgorithm.hpp"
 
 double J::max_offdiag_symmetric(const arma::mat& A, int& k, int &l, int N) {
@@ -25,9 +26,8 @@ void J::jacobi_rotate(arma::mat& A, arma::mat& R, int k, int l, int N){
     double a_ll = A(l, l);
     double a_kk = A(k, k);
     if (a_kl != 0.){
-        double t, tau;
-        tau = (a_ll - a_kk)/(2*a_kl);
-        t = (tau > 0) ? 1.0/(tau + sqrt(1.0 + tau*tau)) : -1.0/( -tau + sqrt(1.0 + tau*tau));
+        double tau = (a_ll - a_kk)/(2*a_kl);
+        double t = (tau > 0) ? 1.0/(tau + sqrt(1.0 + tau*tau)) : -1.0/( -tau + sqrt(1.0 + tau*tau));
         c = 1/sqrt(1+t*t);
         s = c*t;
     }
@@ -56,6 +56,13 @@ void J::jacobi_rotate(arma::mat& A, arma::mat& R, int k, int l, int N){
     }
 }
 
+void sort_by_eigenvalues(arma::mat& eigenvectors, arma::vec& eigenvalues){
+    arma::uvec indices = arma::sort_index(eigenvalues);
+    indices.print();
+    eigenvalues.print();
+
+}
+
 void J::jacobi_eigensolver(arma::mat A, double eps, arma::vec& eigenvalues, arma::mat& eigenvectors, 
 const int maxiter, bool& converged, int N){
     double max_element;
@@ -69,4 +76,5 @@ const int maxiter, bool& converged, int N){
     } while (max_element * max_element > eps && iters < maxiter);
     converged = iters < maxiter;
     eigenvalues = A.diag(0);
+    sort_by_eigenvalues(eigenvectors, eigenvalues);
 }
