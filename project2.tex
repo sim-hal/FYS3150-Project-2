@@ -167,6 +167,35 @@ We insert this into \eqref{eq:differentialequation} and get
     \frac{d^2 u(\hat{x})}{d \hat{x}^2} = -F L^2 \frac{1}{\gamma } u(x)  = - \lambda u(x)
 \end{equation*}
 
+\qed
+
+\end{task}
+
+
+
+\begin{task}
+
+We know that $\vec{v}_i$ is a set of orthonormal basis vectors, meaning $\vec{v}_i^T\cdot \vec{v}_j = \delta_{ij}$. We also know that $\bold{U}$ is an orthonormal transformation matrix. This means that $\bold{U}^T=\bold{U}^{-1}$ and that $\bold{U} \bold{U}^T=\bold{U} \bold{U}^{-1}=I$. We want to show that transformations with $\bold{U}$ preserves orthonormality, and that the set of vectors $\vec{w}_i=\bold{U}\vec{v}_i$ is also an orthonormal set. We start b looking at $\vec{w}_i=\bold{U}\vec{v}_i$
+
+\begin{equation*}
+    \vec{w}_i = \bold{U} \vec{v}_i
+\end{equation*}
+
+we transpose this equation and get
+
+\begin{equation*}
+    \vec{w}_i^T = (\bold{U} \vec{v}_i)^T = \vec{v}_i^T \bold{U}^T
+\end{equation*}
+
+this means that
+
+\begin{equation*}
+    \vec{w}_i^T \vec{w}_j = \vec{v}_i^T \bold{U}^T \bold{U} \vec{v}_j = \vec{v}_i^T I \vec{v}_j = \vec{v}_i^T \vec{v}_j = \delta_{ij}
+\end{equation*}
+
+\qed
+
+
 \end{task}
 
 
