@@ -1,8 +1,8 @@
 #include <iostream>
 #include <armadillo>
 #include <math.h>
-#include "BeamProblem.hpp"
-#include "JacobiAlgorithm.hpp"
+#include "project2/BeamProblem.hpp"
+#include "project2/JacobiAlgorithm.hpp"
 
 using namespace std;
 
@@ -23,7 +23,7 @@ bool eigenvals_agree(const arma::vec &eigenvals1, const arma::vec &eigenvals2){
 }
 
 void small_example() {
-    const int n = 7;
+    const int n = 10;
     BeamProblem small_problem(n);
     small_problem.fill_analytical();
     small_problem.compute_with_armadillo();
@@ -32,9 +32,6 @@ void small_example() {
     cout << eigenvecs_agree(small_problem.jacobi_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) << endl;
     cout << eigenvals_agree(small_problem.arma_eigenvals, small_problem.analytical_eigenvals) << endl;
     cout << eigenvals_agree(small_problem.jacobi_eigenvals, small_problem.analytical_eigenvals) << endl;
-    small_problem.jacobi_eigenvecs.print();
-    cout << "------------" << endl;
-    small_problem.analytical_eigenvecs.print();
 }
 
 bool test_max_offdiag_symmetric(){

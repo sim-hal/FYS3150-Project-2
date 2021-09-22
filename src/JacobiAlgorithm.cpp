@@ -2,7 +2,7 @@
 #include <armadillo>
 #include <math.h>
 #include <utility>
-#include "JacobiAlgorithm.hpp"
+#include "project2/JacobiAlgorithm.hpp"
 
 double J::max_offdiag_symmetric(const arma::mat& A, int& k, int &l, int N) {
     k = 0;
@@ -56,11 +56,22 @@ void J::jacobi_rotate(arma::mat& A, arma::mat& R, int k, int l, int N){
     }
 }
 
-void sort_by_eigenvalues(arma::mat& eigenvectors, arma::vec& eigenvalues){
+void sort_by_eigenvalues(arma::mat& eigenvectors, arma::vec& eigenvalues, int N){
     arma::uvec indices = arma::sort_index(eigenvalues);
-    indices.print();
-    eigenvalues.print();
 
+    for (int i = N - 1; 0 < i; i--) {
+        int new_idx = indices[i];
+
+        while (new_idx > i) {
+            new_idx = indices[new_idx];
+        }
+
+        std::swap(eigenvalues[i], eigenvalues[new_idx]);
+
+        for (auto j = 0; j < N; j++) {
+            std::swap(eigenvectors(j, i), eigenvectors(j, new_idx));
+        }
+    }
 }
 
 void J::jacobi_eigensolver(arma::mat A, double eps, arma::vec& eigenvalues, arma::mat& eigenvectors, 
@@ -76,5 +87,5 @@ const int maxiter, bool& converged, int N){
     } while (max_element * max_element > eps && iters < maxiter);
     converged = iters < maxiter;
     eigenvalues = A.diag(0);
-    sort_by_eigenvalues(eigenvectors, eigenvalues);
+    sort_by_eigenvalues(eigenvectors, eigenvalues, N);
 }

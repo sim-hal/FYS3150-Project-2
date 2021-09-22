@@ -1,8 +1,8 @@
 #include <iostream>
 #include <armadillo>
 #include <math.h>
-#include "BeamProblem.hpp"
-#include "JacobiAlgorithm.hpp"
+#include "project2/BeamProblem.hpp"
+#include "project2/JacobiAlgorithm.hpp"
 
 BeamProblem::BeamProblem(int n) {
                 /*
@@ -38,6 +38,6 @@ void BeamProblem::compute_with_armadillo() {
 
 void BeamProblem::compute_with_jacobi() {
     bool converged;
-    J::jacobi_eigensolver(A, 1e-8, jacobi_eigenvals, jacobi_eigenvecs, 100, converged, N);
+    J::jacobi_eigensolver(A, 1e-8, jacobi_eigenvals, jacobi_eigenvecs, N*N*N, converged, N);
 }
 
