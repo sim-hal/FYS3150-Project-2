@@ -58,8 +58,21 @@ int main() {
     small_example();
     assert (test_max_offdiag_symmetric() == 1);
     ofstream outfile("output/iters.csv");
-    J::estimate_complexity(100, outfile);
+    //J::estimate_complexity(100, outfile);
     outfile.close();
+    // Problem size 10
+    ofstream outfile10("output/n10.csv");
+    BeamProblem problem10(10);
+    problem10.compute_with_jacobi();
+    problem10.write_jacobi_solution_to_file(outfile10);
+    outfile10.close();
+    // Problem size 100
+    ofstream outfile100("output/n100.csv");
+    BeamProblem problem100(100);
+    problem100.compute_with_jacobi();
+    problem100.write_jacobi_solution_to_file(outfile100);
+    outfile100.close();
+
     return 0;
 }
 

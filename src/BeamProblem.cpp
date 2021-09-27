@@ -44,3 +44,12 @@ void BeamProblem::compute_with_jacobi(){
     int iters = 0;
     BeamProblem::compute_with_jacobi(iters);
 }
+
+void BeamProblem::write_jacobi_solution_to_file(std::ofstream &outfile){
+    outfile << "x,v1,v2,v3" <<std::endl;
+    outfile << "0,0,0,0"<<std::endl;
+    for (int i = 0; i < N; i++){
+        outfile << (i + 1) * h << "," << jacobi_eigenvecs(i, 0) << "," << jacobi_eigenvecs(i, 1) << "," << jacobi_eigenvecs(i, 2) << std::endl;
+    }
+    outfile << "1,0,0,0" << std::endl;
+}
