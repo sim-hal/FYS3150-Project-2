@@ -2,6 +2,7 @@
 #include <armadillo>
 #include <math.h>
 #include <fstream>
+#include <cassert>
 #include "project2/BeamProblem.hpp"
 #include "project2/JacobiAlgorithm.hpp"
 
@@ -29,10 +30,11 @@ void small_example() {
     small_problem.fill_analytical();
     small_problem.compute_with_armadillo();
     small_problem.compute_with_jacobi();
-    cout << eigenvecs_agree(small_problem.arma_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) << endl;
-    cout << eigenvecs_agree(small_problem.jacobi_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) << endl;
-    cout << eigenvals_agree(small_problem.arma_eigenvals, small_problem.analytical_eigenvals) << endl;
-    cout << eigenvals_agree(small_problem.jacobi_eigenvals, small_problem.analytical_eigenvals) << endl;
+
+    assert (eigenvecs_agree(small_problem.arma_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) == 1);
+    assert (eigenvecs_agree(small_problem.jacobi_eigenvecs, small_problem.analytical_eigenvecs, small_problem.N) == 1);
+    assert (eigenvals_agree(small_problem.arma_eigenvals, small_problem.analytical_eigenvals) == 1);
+    assert (eigenvals_agree(small_problem.jacobi_eigenvals, small_problem.analytical_eigenvals) == 1);
 }
 
 bool test_max_offdiag_symmetric(){
@@ -54,7 +56,7 @@ bool test_max_offdiag_symmetric(){
 
 int main() {
     small_example();
-    cout << test_max_offdiag_symmetric() << endl;
+    assert (test_max_offdiag_symmetric() == 1);
     ofstream outfile("output/iters.csv");
     J::estimate_complexity(100, outfile);
     outfile.close();
