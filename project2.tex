@@ -245,7 +245,7 @@ this means that
 \begin{task}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics{output/iteration_plot.pdf}
     \caption{A plot with the number of required transformation scales}
@@ -256,6 +256,24 @@ We suspect from reading Fig \ref{fig:poissonplot} that the scaling behavior has 
 
 When we tried finding the scaling behaviour of $A$ when $A$ was a dense matrix, we saw that the size of the entries were impactful for the number of iterations. We decided to scale the matrix, so the order of magnitude of the entries was comparable to those in the tridiagonal matrix.
     
+\end{task}
+
+\begin{task}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{output/n10.pdf}
+    \caption{A plot for n=10}
+    \label{fig:poissonplot}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{output/n100.pdf}
+    \caption{A plot for n=100}
+    \label{fig:poissonplot}
+\end{figure}
+
 \end{task}
 
 \end{document}
