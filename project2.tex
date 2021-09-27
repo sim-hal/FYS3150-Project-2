@@ -144,27 +144,55 @@ We want to show that the second-order differential equation
     \gamma \frac{d^2 u(x)}{d x^2} = -F u(x)
 \end{equation}
 
-can we written as
+can be written as
 
 \begin{equation}\label{eq:dimensionlessdifferentialequation}
-    \frac{d^2 u(\hat{x})}{d x^2} = -\lambda u(\hat{x})
+    \frac{d^2 u(\hat{x})}{d \hat{x}^2} = -\lambda u(\hat{x})
 \end{equation}
 
-where $\hat{x}\equiv x/L \iff x$ is a dimensionless  variable and $\lambda=\frac{F L^2}{\gamma}$. This also means that $x = \hat{x} L$. This means that
+where $\hat{x}\equiv x/L \iff x$ is a dimensionless  variable and $\lambda=\frac{F L^2}{\gamma}$. This also means that $x = \hat{x} L$. We know that
 
 \begin{equation*}
-    \frac{d}{dx} = \frac{d \hat{x}}{x}\frac{d}{d \hat{x}} = \frac{1}{L}\frac{d x}{x}\frac{d}{d \hat{x}} =\frac{1}{L} \frac{d}{d\hat{x}}
+    \frac{d}{d\hat{x}} 
+    = \frac{dx}{d\hat{x}} \frac{du}{dx} 
+    = L \frac{du}{dx} 
+    \iff \frac{du}{dx} 
+    = \frac{1}{L} \frac{du}{d\hat{x}}
 \end{equation*}
 
-We insert this into \eqref{eq:differentialequation} and get
+we define $v=\frac{1}{L} \frac{du}{d\hat{x}}$ and get
 
 \begin{equation*}
-    \gamma \frac{d^2 u(x)}{d x^2} = \gamma \frac{1}{L^2} \frac{d^2 u(\hat{x})}{d \hat{x}^2} = -F u(x) 
+    \frac{d^2 u}{d x^2}
+    = \frac{d}{dx} \Big( \frac{d u}{d x} \Big)
+    = \frac{d}{dx} \Big( \frac{1}{L}\frac{d u}{d \hat{x}} \Big) 
+    = \frac{d}{dx} \Big( v \Big) 
+    = \frac{d v}{dx}
 \end{equation*}
 
-% TODO: HOW TO REMOVE x FROM LAST EXPRESSION?
 \begin{equation*}
-    \frac{d^2 u(\hat{x})}{d \hat{x}^2} = -F L^2 \frac{1}{\gamma } u(x)  = - \lambda u(x)
+    = \frac{d\hat{x}}{dx} \frac{dv}{d\hat{x}}
+    = \frac{1}{L} \frac{dv}{d\hat{x}}
+    = \frac{1}{L} \frac{d}{d\hat{x}} \Big( \frac{1}{L}\frac{d u}{d \hat{x}}  \Big)
+    = \frac{1}{L^2} \frac{d^2 u}{d\hat{x}^2} 
+\end{equation*}
+
+This means that
+
+\begin{equation*}
+    \gamma \frac{d^2 u}{d x^2} = \gamma \frac{1}{L^2} \frac{d^2 u}{d\hat{x}^2} = -F u
+\end{equation*}
+
+by moving terms we see that
+
+\begin{equation*}
+    \frac{d^2 u}{d\hat{x}^2} = -F L^2 \frac{1}{\gamma} u=-\lambda u
+\end{equation*}
+
+if we evaluate $u$ on $\hat{x}$ we see that
+
+\begin{equation*}
+    \frac{d^2 u(\hat{x})}{d\hat{x}^2} = -\lambda u(\hat{x})
 \end{equation*}
 
 \qed
