@@ -36,8 +36,11 @@ void BeamProblem::compute_with_armadillo() {
     arma::eig_sym(arma_eigenvals, arma_eigenvecs, A);
 }
 
-void BeamProblem::compute_with_jacobi() {
-    bool converged;
-    J::jacobi_eigensolver(A, 1e-8, jacobi_eigenvals, jacobi_eigenvecs, N*N*N, converged, N);
+void BeamProblem::compute_with_jacobi(int &iters) {
+    J::jacobi_eigensolver(A, 1e-8, jacobi_eigenvals, jacobi_eigenvecs, N*N*N, iters, N);
 }
 
+void BeamProblem::compute_with_jacobi(){
+    int iters = 0;
+    BeamProblem::compute_with_jacobi(iters);
+}

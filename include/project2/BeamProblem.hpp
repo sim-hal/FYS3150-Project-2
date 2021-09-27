@@ -19,7 +19,8 @@ class BeamProblem {
         BeamProblem(int n);
         void fill_analytical();
         void compute_with_armadillo();
+        void compute_with_jacobi(int &iters);
         void compute_with_jacobi();
-};
+        };
 
 #endif

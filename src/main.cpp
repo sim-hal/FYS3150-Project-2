@@ -1,6 +1,7 @@
 #include <iostream>
 #include <armadillo>
 #include <math.h>
+#include <fstream>
 #include "project2/BeamProblem.hpp"
 #include "project2/JacobiAlgorithm.hpp"
 
@@ -54,6 +55,9 @@ bool test_max_offdiag_symmetric(){
 int main() {
     small_example();
     cout << test_max_offdiag_symmetric() << endl;
+    ofstream outfile("output/iters.csv");
+    J::estimate_complexity(100, outfile);
+    outfile.close();
     return 0;
 }
 

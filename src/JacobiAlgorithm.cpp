@@ -2,7 +2,9 @@
 #include <armadillo>
 #include <math.h>
 #include <utility>
+#include <fstream>
 #include "project2/JacobiAlgorithm.hpp"
+#include "project2/BeamProblem.hpp"
 
 double J::max_offdiag_symmetric(const arma::mat& A, int& k, int &l, int N) {
     k = 0;
@@ -75,17 +77,28 @@ void sort_by_eigenvalues(arma::mat& eigenvectors, arma::vec& eigenvalues, int N)
 }
 
 void J::jacobi_eigensolver(arma::mat A, double eps, arma::vec& eigenvalues, arma::mat& eigenvectors, 
-const int maxiter, bool& converged, int N){
+const int maxiter, int& iters, int N){
     double max_element;
     int k, l;
-    int iters = 0;
     eigenvectors.eye(N , N);
     do {
         max_element = J::max_offdiag_symmetric(A, k, l, N);
         J::jacobi_rotate(A, eigenvectors, k, l, N);
         iters++;
     } while (max_element * max_element > eps && iters < maxiter);
-    converged = iters < maxiter;
     eigenvalues = A.diag(0);
     sort_by_eigenvalues(eigenvectors, eigenvalues, N);
+    if (maxiter < iters){
+        std::cout << "Warning - did not converge" << std::endl;
+    }
+}
+
+void J::estimate_complexity(int upto, std::ofstream &outfile){
+    outfile << "N," << "Iterations" << std::endl;
+    for (int n = 7; n < upto; n++){
+        BeamProblem problem(n);
+        int iters = 0;
+        problem.compute_with_jacobi(iters);
+        outfile << n - 1 << "," << iters << std::endl;
+    }
 }
