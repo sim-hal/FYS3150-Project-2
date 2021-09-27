@@ -224,7 +224,38 @@ this means that
 \qed
 
 
+
 \end{task}
 
+\begin{task}
+
+    See implementation
+\end{task}
+
+\begin{task}
+
+    See implementation
+\end{task}
+
+\begin{task}
+
+    See implementation
+\end{task}
+
+\begin{task}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{output/iteration_plot.pdf}
+    \caption{A plot with the number of required transformation scales}
+    \label{fig:poissonplot}
+\end{figure}
+
+We suspect from reading Fig \ref{fig:poissonplot} that the scaling behavior has quadratic complexity. From the plot it seems that the dense matrix has a similar complexity, but with a somewhat bigger constant.
+
+When we tried finding the scaling behaviour of $A$ when $A$ was a dense matrix, we saw that the size of the entries were impactful for the number of iterations. We decided to scale the matrix, so the order of magnitude of the entries was comparable to those in the tridiagonal matrix.
+    
+\end{task}
 
 \end{document}
