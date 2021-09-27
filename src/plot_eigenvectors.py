@@ -3,9 +3,12 @@ import pandas as pd
 
 def plotToFile(infile, outfile):
     df = pd.read_csv(infile)
-    plt.plot(df["x"], df["v1"], label="v1")
-    plt.plot(df["x"], df["v2"], label="v2")
-    plt.plot(df["x"], df["v3"], label="v3")
+    plt.plot(df["x"], df["jacobi1"], label="v1 (Jacobi)")
+    plt.plot(df["x"], df["jacobi2"], label="v2 (Jacobi)")
+    plt.plot(df["x"], df["jacobi3"], label="v3 (Jacobi)")
+    plt.plot(df["x"], df["analytic1"], label="v1 (Analytic)")
+    plt.plot(df["x"], df["analytic2"], label="v2 (Analytic)")
+    plt.plot(df["x"], df["analytic3"], label="v3 (Analytic)")
     plt.xlabel(r'$\hat{x}$')
     plt.ylabel("v")
     plt.legend()

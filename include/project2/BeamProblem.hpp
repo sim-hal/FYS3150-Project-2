@@ -21,6 +21,6 @@ class BeamProblem {
         void compute_with_armadillo();
         void compute_with_jacobi(int &iters);
         void compute_with_jacobi();
-        void write_jacobi_solution_to_file(std::ofstream &outfile);
+        void write_solutions_to_file(std::ofstream &outfile);
         };
 #endif
