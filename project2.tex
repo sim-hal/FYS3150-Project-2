@@ -46,7 +46,7 @@
 \renewcommand{\thesubtasknr}{\textbf{(\alph{subtasknr})}}
 
 \newenvironment{task}[1][\thetasknr]{\refstepcounter{tasknr}\par
-\bigskip \noindent\textbf{Problem~\textbf{#1})}}
+\bigskip \noindent\textbf{Problem~\textbf{#1}\vspace{2em})}}
 	{\par\bigskip}
 \newenvironment{subtask}{\par\medskip \refstepcounter{subtasknr}
 \noindent \textbf{(\alph{subtasknr})}}{\par\medskip}
@@ -153,7 +153,7 @@ can be written as
 where $\hat{x}\equiv x/L \iff x$ is a dimensionless  variable and $\lambda=\frac{F L^2}{\gamma}$. This also means that $x = \hat{x} L$. We know that
 
 \begin{equation*}
-    \frac{d}{d\hat{x}} 
+    \frac{du}{d\hat{x}} 
     = \frac{dx}{d\hat{x}} \frac{du}{dx} 
     = L \frac{du}{dx} 
     \iff \frac{du}{dx} 
