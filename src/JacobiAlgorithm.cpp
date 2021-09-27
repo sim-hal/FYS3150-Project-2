@@ -94,11 +94,18 @@ const int maxiter, int& iters, int N){
 }
 
 void J::estimate_complexity(int upto, std::ofstream &outfile){
-    outfile << "N," << "Iterations" << std::endl;
+    arma::arma_rng::set_seed(420);
+    outfile << "N," << "Iterations tridiagonal," << "Iterations dense" << std::endl;
     for (int n = 7; n < upto; n++){
         BeamProblem problem(n);
-        int iters = 0;
-        problem.compute_with_jacobi(iters);
-        outfile << n - 1 << "," << iters << std::endl;
+        arma::mat dense(n - 1, n - 1, arma::fill::randu);
+        dense *= n * n;
+        arma::mat eigenvectors;
+        arma::vec eigenvalues;
+        int iters1 = 0;
+        int iters2 = 0;
+        problem.compute_with_jacobi(iters1);
+        jacobi_eigensolver(dense, 1e-8, eigenvalues, eigenvectors, n * n * n, iters2, n - 1);
+        outfile << n - 1 << "," << iters1 << "," << iters2 << std::endl;
     }
 }
